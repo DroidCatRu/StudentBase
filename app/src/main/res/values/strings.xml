@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StudentBase</string>
+    <string name="student_hint_name">Student name</string>
+    <string name="error_name_empty">Enter name</string>
+    <string name="change_name">Change last student name</string>
+    <string name="enter_name">Enter student name:</string>
+</resources>
