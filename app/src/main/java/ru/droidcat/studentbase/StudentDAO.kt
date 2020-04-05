@@ -5,7 +5,7 @@ import androidx.room.*
 
 @Dao
 interface StudentDAO {
-    @Query("SELECT * from student_table ORDER BY LOWER(lastname), LOWER(name), LOWER(middlename) ASC")
+    @Query("SELECT * from student_table ORDER BY LOWER(lastname), LOWER(name), LOWER(middlename), id ASC")
     fun getStudentsSortedByName(): LiveData<List<Student>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

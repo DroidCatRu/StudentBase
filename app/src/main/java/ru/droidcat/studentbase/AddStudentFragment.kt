@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -29,19 +30,38 @@ class AddStudentFragment: BottomSheetDialogFragment() {
         }
 
 
-        val studentNameField: TextInputLayout = view.findViewById(R.id.add_student_field)
-        val studentNameEditText: TextInputEditText = view.findViewById(R.id.add_student_edit_text)
+        val studentNameField: TextInputLayout = view.findViewById(R.id.add_student_name)
+        val studentLastNameField: TextInputLayout = view.findViewById(R.id.add_student_lastname)
+        val studentMiddleNameField: TextInputLayout = view.findViewById(R.id.add_student_middlename)
 
-        studentNameField.setEndIconOnClickListener {
-            if(studentNameField.editText?.text.toString().isNotEmpty()) {
+        val studentNameEditText: TextInputEditText = view.findViewById(R.id.add_student_name_edit_text)
+        val studentLastNameEditText: TextInputEditText = view.findViewById(R.id.add_student_lastname_edit_text)
+        val studentMiddleNameEditText: TextInputEditText = view.findViewById(R.id.add_student_middlename_edit_text)
+
+        val addStudentButton: MaterialButton = view.findViewById(R.id.add_student_button)
+
+        addStudentButton.setOnClickListener {
+            val name = studentNameField.editText?.text.toString()
+            val lastname = studentLastNameField.editText?.text.toString()
+            val middlename = studentMiddleNameField.editText?.text.toString()
+
+            if(name.isNotEmpty() && lastname.isNotEmpty() && middlename.isNotEmpty()) {
                 val intent = Intent("ru.droidcatru.action.NAME_ENTERED")
-                intent.putExtra("name", studentNameField.editText?.text.toString())
-                Log.d("Intent sent", studentNameField.editText?.text.toString())
+                intent.putExtra("name", name)
+                intent.putExtra("lastname", lastname)
+                intent.putExtra("middlename", middlename)
+                Log.d("Intent sent", "$lastname $name $middlename")
                 context?.sendBroadcast(intent)
                 dismiss()
             }
-            else {
+            if(name.isEmpty()) {
                 studentNameField.error = getString(R.string.error_name_empty)
+            }
+            if(lastname.isEmpty()) {
+                studentLastNameField.error = getString(R.string.error_lastname_empty)
+            }
+            if(middlename.isEmpty()) {
+                studentMiddleNameField.error = getString(R.string.error_middlename_empty)
             }
         }
 
@@ -60,6 +80,39 @@ class AddStudentFragment: BottomSheetDialogFragment() {
                 s!!
             }
         })
+
+        studentLastNameEditText.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                s!!
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s!!
+                if(studentLastNameField.editText?.text.toString().isNotEmpty()) {
+                    studentLastNameField.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                s!!
+            }
+        })
+
+        studentMiddleNameEditText.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                s!!
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s!!
+                if(studentMiddleNameField.editText?.text.toString().isNotEmpty()) {
+                    studentMiddleNameField.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                s!!
+            }
+        })
+
         return view
     }
 

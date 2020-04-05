@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">StudentBase</string>
     <string name="student_hint_name">Student name</string>
+    <string name="student_hint_lastname">Student last name</string>
+    <string name="student_hint_middlename">Student middle name</string>
+    <string name="add_student_button_text">Add student</string>
     <string name="error_name_empty">Enter name</string>
+    <string name="error_lastname_empty">Enter last name</string>
+    <string name="error_middlename_empty">Enter middle name</string>
     <string name="change_name">Change last student name</string>
     <string name="enter_name">Enter student name:</string>
 </resources>
