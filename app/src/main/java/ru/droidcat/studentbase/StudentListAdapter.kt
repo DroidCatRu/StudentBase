@@ -27,7 +27,7 @@ class StudentListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val current = students[position]
-        val nameBoxText = current.id + " " + current.name
+        val nameBoxText = current.id + " " + current.lastname + " " + current.name + " " + current.middlename
         holder.name.text = nameBoxText
         holder.time.text = current.time
         holder.itemView.tag = holder

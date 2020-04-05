@@ -49,9 +49,14 @@ class MainActivity : AppCompatActivity() {
         br = object : BroadcastReceiver() {
             // действия при получении сообщений
             override fun onReceive(context: Context?, intent: Intent) {
-                intent.getStringExtra("name")?.let {
-                    Log.d("Intent received", it)
-                    studentViewModel.insert(it)
+                val lastname = intent.getStringExtra("lastname")
+                val name = intent.getStringExtra("name")
+                val middlename = intent.getStringExtra("middlename")
+                if(lastname != null && name != null && middlename != null) {
+                    studentViewModel.insert(lastname, name, middlename)
+                }
+                else {
+                    Log.i("Broadcast", "broadcast corrupted")
                 }
             }
         }
@@ -77,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         when (item!!.itemId) {
             R.id.change_student_name -> {
                 val id = studentViewModel.size()
-                studentViewModel.updateStudentName(id.toString(), "Иванов Иван Иванович")
+                studentViewModel.updateStudentName(id.toString(), "Иванов","Иван", "Иванович")
             }
         }
 

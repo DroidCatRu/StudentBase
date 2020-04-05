@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-@Database(entities = [Student::class], version = 1, exportSchema = false)
+@Database(entities = [Student::class], version = 2, exportSchema = false)
 abstract class StudentRoomDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDAO
@@ -32,8 +32,10 @@ abstract class StudentRoomDatabase : RoomDatabase() {
                     StudentRoomDatabase::class.java,
                     "student_database"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(StudentDatabaseCallback(scope))
                     .build()
+
                 INSTANCE = instance
                 // return instance
                 instance
@@ -71,23 +73,23 @@ abstract class StudentRoomDatabase : RoomDatabase() {
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.ENGLISH)
 
             var currentDate = sdf.format(Date())
-            var student = Student("1", "Геденидзе Давид Тимуриевич", currentDate)
+            var student = Student("1", "Геденидзе", "Давид", "Тимуриевич", currentDate)
             studentDAO.insert(student)
 
             currentDate = sdf.format(Date())
-            student = Student("2", "Копотов Михаил Алексеевич", currentDate)
+            student = Student("2", "Копотов", "Михаил", "Алексеевич", currentDate)
             studentDAO.insert(student)
 
             currentDate = sdf.format(Date())
-            student = Student("3", "Горак Никита Сергеевич", currentDate)
+            student = Student("3", "Горак", "Никита", "Сергеевич", currentDate)
             studentDAO.insert(student)
 
             currentDate = sdf.format(Date())
-            student = Student("4", "Копташкина Татьяна Алексеевна", currentDate)
+            student = Student("4", "Копташкина", "Татьяна", "Алексеевна", currentDate)
             studentDAO.insert(student)
 
             currentDate = sdf.format(Date())
-            student = Student("5", "Кошкин Артем Сергеевич", currentDate)
+            student = Student("5", "Кошкин", "Артем", "Сергеевич", currentDate)
             studentDAO.insert(student)
         }
     }

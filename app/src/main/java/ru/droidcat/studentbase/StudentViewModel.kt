@@ -34,11 +34,11 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
         repository.insert(student)
     }
 
-    fun insert(name: String) = viewModelScope.launch {
+    fun insert(lastname: String, name: String, middlename: String) = viewModelScope.launch {
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.ENGLISH)
         var currentDate = sdf.format(Date())
         val id = size()?.plus(1)
-        val student = Student(id.toString(), name, currentDate.toString())
+        val student = Student(id.toString(), lastname, name, middlename, currentDate.toString())
         repository.insert(student)
     }
 
@@ -46,7 +46,7 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
         return allStudents.value?.size
     }
 
-    fun updateStudentName(uid: String, name: String) = viewModelScope.launch {
-        repository.updateStudentName(uid, name)
+    fun updateStudentName(uid: String, lastname: String, name: String, middlename: String) = viewModelScope.launch {
+        repository.updateStudentName(uid, lastname, name, middlename)
     }
 }

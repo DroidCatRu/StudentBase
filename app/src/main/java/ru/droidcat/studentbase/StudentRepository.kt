@@ -12,7 +12,7 @@ class StudentRepository(private val studentDAO: StudentDAO) {
         studentDAO.insert(student)
     }
 
-    suspend fun updateStudentName(uid: String, name: String) {
-        studentDAO.updateStudentName(uid, name)
+    suspend fun updateStudentName(uid: String, lastname: String, name: String, middlename: String) {
+        studentDAO.updateStudentName(uid, lastname, name, middlename)
     }
 }
