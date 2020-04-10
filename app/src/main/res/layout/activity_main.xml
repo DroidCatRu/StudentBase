@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/studentlist_item"
-        android:paddingBottom="56dp"
+        android:paddingBottom="@dimen/bottombar_height"
         android:clipToPadding="false"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_appbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/bottombar_height"
         android:layout_gravity="bottom"
         style="@style/Widget.MaterialComponents.BottomAppBar"
         app:fabAlignmentMode="center"

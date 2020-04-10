@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottombar_height">56dp</dimen>
+    <dimen name="add_student_horizontal_padding">16dp</dimen>
+    <dimen name="add_student_bottom_padding">32dp</dimen>
+    <dimen name="add_student_title_top">24dp</dimen>
+    <dimen name="add_student_list_gap">16dp</dimen>
+    <dimen name="studentlist_item_height">56dp</dimen>
+    <dimen name="studentlist_horizontal_padding">16dp</dimen>
+</resources>
